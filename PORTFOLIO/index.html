@@ -1,0 +1,996 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mmesoma Onyeka | Kamy the Designer</title>
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --pink: #ff4d9e;
+            --purple: #c77dff;
+            --blue: #4cc9f0;
+            --yellow: #ffd166;
+            --red: #ff6b6b;
+            --green: #06d6a0;
+            --bg: #150810;
+            --card: rgba(255, 255, 255, 0.04);
+            --border: rgba(255, 255, 255, 0.08);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            background: var(--bg);
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        /* Blobs */
+        .blobs {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(90px);
+            opacity: 0.1;
+        }
+
+        .blob1 {
+            width: 500px;
+            height: 500px;
+            background: var(--pink);
+            top: -150px;
+            left: -150px;
+        }
+
+        .blob2 {
+            width: 350px;
+            height: 350px;
+            background: var(--purple);
+            top: 45%;
+            right: -100px;
+        }
+
+        .blob3 {
+            width: 280px;
+            height: 280px;
+            background: var(--blue);
+            bottom: -80px;
+            left: 35%;
+        }
+
+        /* NAV */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 18px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(21, 8, 16, 0.88);
+            backdrop-filter: blur(18px);
+            border-bottom: 1px solid rgba(255, 77, 158, 0.12);
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: 900;
+            background: linear-gradient(90deg, var(--pink), var(--purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 28px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: rgba(255, 255, 255, 0.6);
+            font-weight: 700;
+            font-size: 13px;
+            text-decoration: none;
+            text-transform: capitalize;
+            border-bottom: 2px solid transparent;
+            padding-bottom: 3px;
+            transition: color 0.2s, border-color 0.2s;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--pink);
+            border-color: var(--pink);
+        }
+
+        /* SECTIONS */
+        section {
+            position: relative;
+            z-index: 1;
+            padding: 100px 40px;
+        }
+
+        #home {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-top: 130px;
+        }
+
+        .section-label {
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--pink);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .section-label::before {
+            content: '';
+            display: inline-block;
+            width: 32px;
+            height: 2px;
+            background: var(--pink);
+        }
+
+        h2 {
+            font-size: clamp(28px, 4vw, 46px);
+            font-weight: 900;
+            margin-bottom: 48px;
+            line-height: 1.1;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, var(--pink), var(--purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* HERO */
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 77, 158, 0.12);
+            border: 1px solid rgba(255, 77, 158, 0.3);
+            border-radius: 100px;
+            padding: 6px 18px;
+            font-size: 12px;
+            color: #ffb3d9;
+            margin-bottom: 28px;
+        }
+
+        .hero-name {
+            font-size: clamp(50px, 8vw, 82px);
+            font-weight: 900;
+            line-height: 1.05;
+            margin-bottom: 6px;
+        }
+
+        .hero-name-colored {
+            font-size: clamp(50px, 8vw, 82px);
+            font-weight: 900;
+            line-height: 1.05;
+            margin-bottom: 18px;
+            background: linear-gradient(135deg, var(--pink), var(--purple), var(--blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-handle {
+            font-size: 18px;
+            color: #ffb3d9;
+            font-weight: 700;
+            margin-bottom: 22px;
+        }
+
+        .pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 32px;
+        }
+
+        .pill {
+            padding: 7px 18px;
+            border-radius: 100px;
+            font-size: 13px;
+            font-weight: 700;
+            border: 1.5px solid;
+        }
+
+        .hero-desc {
+            font-size: 16px;
+            line-height: 1.9;
+            color: rgba(255, 255, 255, 0.6);
+            max-width: 520px;
+            margin-bottom: 40px;
+        }
+
+        .btn-row {
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            padding: 14px 34px;
+            border-radius: 100px;
+            background: linear-gradient(135deg, #e91e8c, #ff6fb7);
+            color: #fff;
+            font-weight: 700;
+            font-size: 15px;
+            cursor: pointer;
+            border: none;
+            box-shadow: 0 8px 30px rgba(255, 77, 158, 0.35);
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-yt {
+            padding: 14px 34px;
+            border-radius: 100px;
+            background: rgba(255, 77, 158, 0.1);
+            border: 2px solid rgba(255, 77, 158, 0.35);
+            color: var(--pink);
+            font-weight: 700;
+            font-size: 15px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* ABOUT */
+        .about-grid {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 64px;
+            align-items: center;
+        }
+
+        .photo-wrap {
+            position: relative;
+            width: 300px;
+            height: 340px;
+            margin: 0 auto;
+        }
+
+        .photo-inner {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            animation: morphBlob 8s ease-in-out infinite;
+            box-shadow: 0 24px 64px rgba(255, 77, 158, 0.35);
+            background: linear-gradient(135deg, rgba(255, 77, 158, 0.27), rgba(199, 125, 255, 0.27));
+        }
+
+        .photo-inner img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: top center;
+        }
+
+        .badge-tl,
+        .badge-br {
+            position: absolute;
+            border-radius: 12px;
+            padding: 8px 14px;
+            font-size: 11px;
+            font-weight: 800;
+        }
+
+        .badge-tl {
+            top: -12px;
+            left: -18px;
+            background: linear-gradient(135deg, var(--yellow), var(--red));
+            color: #1a0a12;
+            transform: rotate(-8deg);
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+        }
+
+        .badge-br {
+            bottom: 24px;
+            right: -18px;
+            background: linear-gradient(135deg, var(--pink), var(--purple));
+            color: #fff;
+            transform: rotate(6deg);
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+        }
+
+        .about-text p {
+            font-size: 15px;
+            line-height: 1.85;
+            color: rgba(255, 255, 255, 0.65);
+            margin-bottom: 16px;
+        }
+
+        .about-icons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+            margin-top: 14px;
+        }
+
+        .about-icon-card {
+            background: var(--card);
+            border: 1px solid rgba(255, 77, 158, 0.18);
+            border-radius: 16px;
+            padding: 16px;
+            text-align: center;
+        }
+
+        .about-icon-card .icon {
+            font-size: 26px;
+            margin-bottom: 4px;
+        }
+
+        .about-icon-card .label {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.45);
+        }
+
+        /* SKILLS */
+        #skills {
+            background: rgba(255, 255, 255, 0.015);
+        }
+
+        .skills-grid {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+            gap: 20px;
+        }
+
+        .skill-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 24px 20px;
+        }
+
+        .skill-icon {
+            font-size: 30px;
+            margin-bottom: 10px;
+        }
+
+        .skill-name {
+            font-weight: 700;
+            font-size: 14px;
+            margin-bottom: 12px;
+        }
+
+        .skill-bar-bg {
+            height: 4px;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .skill-bar {
+            height: 100%;
+            border-radius: 10px;
+            width: 0;
+            transition: width 1.4s ease;
+        }
+
+        .skill-pct {
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.35);
+            margin-top: 6px;
+        }
+
+        /* PROJECTS */
+        .projects-wrap {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .yt-banner {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            background: linear-gradient(135deg, rgba(255, 77, 158, 0.14), rgba(199, 125, 255, 0.1));
+            border: 1.5px solid rgba(255, 77, 158, 0.35);
+            border-radius: 20px;
+            padding: 22px 28px;
+            margin-bottom: 32px;
+            text-decoration: none;
+            color: #fff;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .yt-banner:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 40px rgba(255, 77, 158, 0.22);
+        }
+
+        .yt-icon {
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--pink), var(--purple));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            flex-shrink: 0;
+        }
+
+        .yt-banner-title {
+            font-weight: 800;
+            font-size: 16px;
+            margin-bottom: 4px;
+        }
+
+        .yt-banner-sub {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .yt-arrow {
+            margin-left: auto;
+            color: var(--pink);
+            font-size: 20px;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 22px;
+        }
+
+        .project-card {
+            border-radius: 24px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            transition: transform 0.25s, box-shadow 0.25s;
+            text-decoration: none;
+            color: #fff;
+            display: block;
+        }
+
+        .project-card.story:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 16px 50px rgba(255, 77, 158, 0.2);
+        }
+
+        .project-card.no-link {
+            cursor: default;
+        }
+
+        .card-img {
+            height: 150px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 52px;
+            position: relative;
+        }
+
+        .watch-badge {
+            position: absolute;
+            top: 10px;
+            right: 12px;
+            background: rgba(255, 77, 158, 0.9);
+            border-radius: 100px;
+            padding: 4px 12px;
+            font-size: 11px;
+            font-weight: 800;
+            color: #fff;
+        }
+
+        .card-body {
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        .card-tags {
+            display: flex;
+            gap: 7px;
+            margin-bottom: 10px;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            font-size: 11px;
+            font-weight: 700;
+            padding: 3px 10px;
+            border-radius: 100px;
+            background: rgba(255, 77, 158, 0.14);
+            color: var(--pink);
+            border: 1px solid rgba(255, 77, 158, 0.28);
+        }
+
+        .card-title {
+            font-weight: 800;
+            font-size: 16px;
+            margin-bottom: 8px;
+        }
+
+        .card-desc {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.45);
+            line-height: 1.65;
+        }
+
+        .card-link {
+            margin-top: 14px;
+            font-size: 13px;
+            color: var(--pink);
+            font-weight: 700;
+        }
+
+        /* CONTACT */
+        #contact {
+            text-align: center;
+        }
+
+        .contact-wrap {
+            max-width: 580px;
+            margin: 0 auto;
+        }
+
+        .contact-desc {
+            color: rgba(255, 255, 255, 0.55);
+            font-size: 15px;
+            line-height: 1.85;
+            margin-bottom: 40px;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 14px;
+        }
+
+        .contact-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 24px 12px;
+            text-decoration: none;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 7px;
+            transition: border-color 0.3s, background 0.3s;
+        }
+
+        .contact-card:hover {
+            border-color: rgba(255, 77, 158, 0.45);
+            background: rgba(255, 77, 158, 0.08);
+        }
+
+        .contact-icon {
+            font-size: 28px;
+        }
+
+        .contact-label {
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .contact-val {
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--pink);
+            word-break: break-all;
+            text-align: center;
+        }
+
+        /* FOOTER */
+        footer {
+            text-align: center;
+            padding: 32px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            color: rgba(255, 255, 255, 0.25);
+            font-size: 13px;
+            position: relative;
+            z-index: 1;
+        }
+
+        footer span {
+            color: var(--pink);
+        }
+
+        /* FADE-IN */
+        .fade {
+            opacity: 0;
+            transform: translateY(36px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+
+        .fade.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* KEYFRAMES */
+        @keyframes morphBlob {
+
+            0%,
+            100% {
+                border-radius: 42% 58% 52% 68% / 52% 42% 62% 48%;
+            }
+
+            50% {
+                border-radius: 62% 38% 72% 28% / 38% 64% 28% 74%;
+            }
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 700px) {
+            nav {
+                padding: 14px 20px;
+            }
+
+            .nav-links {
+                gap: 16px;
+            }
+
+            section {
+                padding: 80px 20px;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .yt-banner {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .yt-arrow {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- BG BLOBS -->
+    <div class="blobs">
+        <div class="blob blob1"></div>
+        <div class="blob blob2"></div>
+        <div class="blob blob3"></div>
+    </div>
+
+    <!-- NAV -->
+    <nav>
+        <div class="logo">Kamy ✦</div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- HERO -->
+    <section id="home">
+        <div>
+            <div class="hero-badge">✦ Open for creative projects 🌸</div>
+            <div class="hero-name">Mmesoma</div>
+            <div class="hero-name-colored">Onyeka 🌸</div>
+            <div class="hero-handle">@Kamythedesigner</div>
+            <div class="pills">
+                <span class="pill" style="color:#ff4d9e;border-color:#ff4d9e;background:rgba(255,77,158,0.13)">🎨
+                    Designer</span>
+                <span class="pill" style="color:#c77dff;border-color:#c77dff;background:rgba(199,125,255,0.13)">✨
+                    Animator</span>
+                <span class="pill" style="color:#4cc9f0;border-color:#4cc9f0;background:rgba(76,201,240,0.13)">💻 Web
+                    Dev</span>
+                <span class="pill" style="color:#ffd166;border-color:#ffd166;background:rgba(255,209,102,0.13)">📚
+                    Student</span>
+            </div>
+            <p class="hero-desc">
+                I turn ideas into stunning visuals, animations and web experiences that leave a lasting impression.
+                Design is my language, creativity is my superpower. 💕
+            </p>
+            <div class="btn-row">
+                <a href="#projects" class="btn-primary">View My Work 🌸</a>
+                <a href="https://youtube.com/@kachi_tales?si=p3XJhmU37cUWHF_k" target="_blank" class="btn-yt">▶ My
+                    YouTube</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about">
+        <div class="about-grid">
+            <div class="fade" style="display:flex;justify-content:center;">
+                <div class="photo-wrap">
+                    <div class="photo-inner">
+                        <img src="data:image/jpeg;base64,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"
+                            alt="Mmesoma Onyeka" />
+                    </div>
+                    <div class="badge-tl">Creative ✦</div>
+                    <div class="badge-br">Designer 🎨</div>
+                </div>
+            </div>
+            <div class="about-text fade" style="transition-delay:0.2s">
+                <div class="section-label">About Me</div>
+                <h2>Hello, I'm <span class="gradient-text">Kamy</span> 💕</h2>
+                <p>I'm Mmesoma Onyeka — a passionate designer, animator, and web developer with a love for all things
+                    creative and colourful.</p>
+                <p>Whether it's a beautiful website, a captivating animation, or a striking visual — I pour my heart
+                    into every project. Always learning, always growing, always creating. 🌷</p>
+                <div class="about-icons">
+                    <div class="about-icon-card">
+                        <div class="icon">🎨</div>
+                        <div class="label">Designer</div>
+                    </div>
+                    <div class="about-icon-card">
+                        <div class="icon">✨</div>
+                        <div class="label">Animator</div>
+                    </div>
+                    <div class="about-icon-card">
+                        <div class="icon">💻</div>
+                        <div class="label">Web Dev</div>
+                    </div>
+                    <div class="about-icon-card">
+                        <div class="icon">📖</div>
+                        <div class="label">Storyteller</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills">
+        <div style="max-width:1000px;margin:0 auto;">
+            <div class="fade">
+                <div class="section-label">What I Do</div>
+                <h2>My <span class="gradient-text">Skills</span></h2>
+            </div>
+            <div class="skills-grid">
+                <div class="skill-card fade" style="transition-delay:0.0s">
+                    <div class="skill-icon">🎨</div>
+                    <div class="skill-name">UI/UX Design</div>
+                    <div class="skill-bar-bg">
+                        <div class="skill-bar" style="background:linear-gradient(90deg,#ff4d9e,#ff4d9e)" data-pct="88">
+                        </div>
+                    </div>
+                    <div class="skill-pct">88%</div>
+                </div>
+                <div class="skill-card fade" style="transition-delay:0.08s">
+                    <div class="skill-icon">✨</div>
+                    <div class="skill-name">Animation</div>
+                    <div class="skill-bar-bg">
+                        <div class="skill-bar" style="background:linear-gradient(90deg,#c77dff,#ff4d9e)" data-pct="82">
+                        </div>
+                    </div>
+                    <div class="skill-pct">82%</div>
+                </div>
+                <div class="skill-card fade" style="transition-delay:0.16s">
+                    <div class="skill-icon">💻</div>
+                    <div class="skill-name">Web Development</div>
+                    <div class="skill-bar-bg">
+                        <div class="skill-bar" style="background:linear-gradient(90deg,#4cc9f0,#ff4d9e)" data-pct="75">
+                        </div>
+                    </div>
+                    <div class="skill-pct">75%</div>
+                </div>
+                <div class="skill-card fade" style="transition-delay:0.24s">
+                    <div class="skill-icon">🖌️</div>
+                    <div class="skill-name">Graphic Design</div>
+                    <div class="skill-bar-bg">
+                        <div class="skill-bar" style="background:linear-gradient(90deg,#ff6b6b,#ff4d9e)" data-pct="85">
+                        </div>
+                    </div>
+                    <div class="skill-pct">85%</div>
+                </div>
+                <div class="skill-card fade" style="transition-delay:0.32s">
+                    <div class="skill-icon">📱</div>
+                    <div class="skill-name">Responsive Design</div>
+                    <div class="skill-bar-bg">
+                        <div class="skill-bar" style="background:linear-gradient(90deg,#ffd166,#ff4d9e)" data-pct="80">
+                        </div>
+                    </div>
+                    <div class="skill-pct">80%</div>
+                </div>
+                <div class="skill-card fade" style="transition-delay:0.40s">
+                    <div class="skill-icon">📖</div>
+                    <div class="skill-name">Storytelling</div>
+                    <div class="skill-bar-bg">
+                        <div class="skill-bar" style="background:linear-gradient(90deg,#06d6a0,#ff4d9e)" data-pct="92">
+                        </div>
+                    </div>
+                    <div class="skill-pct">92%</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects">
+        <div class="projects-wrap">
+            <div class="fade">
+                <div class="section-label">Portfolio</div>
+                <h2>My <span class="gradient-text">Projects</span></h2>
+            </div>
+
+            <a href="https://youtube.com/@kachi_tales?si=p3XJhmU37cUWHF_k" target="_blank" class="yt-banner fade">
+                <div class="yt-icon">▶</div>
+                <div>
+                    <div class="yt-banner-title">Watch My Stories on YouTube 🌸</div>
+                    <div class="yt-banner-sub">@kachi_tales · Animations, Bible stories & folktales</div>
+                </div>
+                <div class="yt-arrow">→</div>
+            </a>
+
+            <div class="projects-grid">
+                <a href="https://youtube.com/@kachi_tales?si=p3XJhmU37cUWHF_k" target="_blank"
+                    class="project-card story fade" style="transition-delay:0.0s">
+                    <div class="card-img"
+                        style="background:linear-gradient(135deg,rgba(255,77,158,0.2),rgba(199,125,255,0.15))">
+                        🌟<div class="watch-badge">▶ Watch</div>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-tags"><span class="tag">Animation</span><span class="tag">Story</span></div>
+                        <div class="card-title">Lumi & The Clockticker</div>
+                        <div class="card-desc">A fairy-tale animated story with narration, dreamy background music and
+                            magical visuals.</div>
+                        <div class="card-link">Watch on YouTube →</div>
+                    </div>
+                </a>
+
+                <a href="https://youtube.com/@kachi_tales?si=p3XJhmU37cUWHF_k" target="_blank"
+                    class="project-card story fade" style="transition-delay:0.1s">
+                    <div class="card-img"
+                        style="background:linear-gradient(135deg,rgba(6,214,160,0.2),rgba(76,201,240,0.15))">
+                        🌿<div class="watch-badge">▶ Watch</div>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-tags"><span class="tag">Animation</span><span class="tag">Folktale</span></div>
+                        <div class="card-title">Amara Story</div>
+                        <div class="card-desc">Nigerian folktale-style animation about a girl's beautiful breakthrough.
+                            Heartwarming & powerful.</div>
+                        <div class="card-link">Watch on YouTube →</div>
+                    </div>
+                </a>
+
+                <a href="https://youtube.com/@kachi_tales?si=p3XJhmU37cUWHF_k" target="_blank"
+                    class="project-card story fade" style="transition-delay:0.2s">
+                    <div class="card-img"
+                        style="background:linear-gradient(135deg,rgba(255,209,102,0.2),rgba(255,107,107,0.15))">
+                        📖<div class="watch-badge">▶ Watch</div>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-tags"><span class="tag">Content</span><span class="tag">Design</span></div>
+                        <div class="card-title">David & Goliath Bible Story</div>
+                        <div class="card-desc">Children's Bible story for YouTube — with stunning thumbnails & audience
+                            engagement copy.</div>
+                        <div class="card-link">Watch on YouTube →</div>
+                    </div>
+                </a>
+
+                <div class="project-card no-link fade" style="transition-delay:0.3s">
+                    <div class="card-img"
+                        style="background:linear-gradient(135deg,rgba(199,125,255,0.15),rgba(76,201,240,0.15))">💻</div>
+                    <div class="card-body">
+                        <div class="card-tags"><span class="tag">Web Dev</span><span class="tag">SQL</span></div>
+                        <div class="card-title">ABStores Database</div>
+                        <div class="card-desc">A T-SQL database with full sales tracking, store management and company
+                            analytics.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+        <div class="contact-wrap">
+            <div class="fade">
+                <div class="section-label" style="justify-content:center;">Contact</div>
+                <h2>Let's <span class="gradient-text">Connect</span> 💕</h2>
+                <p class="contact-desc">Have a project in mind? Want to collaborate? Or just say hi? I'd love to hear
+                    from you! 🌸</p>
+                <div class="contact-grid">
+                    <a href="mailto:mmesomaonyeka301@gmail.com" class="contact-card">
+                        <div class="contact-icon">📧</div>
+                        <div class="contact-label">Email</div>
+                        <div class="contact-val">mmesomaonyeka301@gmail.com</div>
+                    </a>
+                    <a href="https://github.com/mmesomaonyeka301-code" target="_blank" class="contact-card">
+                        <div class="contact-icon">🐙</div>
+                        <div class="contact-label">GitHub</div>
+                        <div class="contact-val">mmesomaonyeka301-code</div>
+                    </a>
+                    <a href="https://youtube.com/@kachi_tales?si=p3XJhmU37cUWHF_k" target="_blank" class="contact-card">
+                        <div class="contact-icon">▶</div>
+                        <div class="contact-label">YouTube</div>
+                        <div class="contact-val">@kachi_tales</div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        Made with <span>💗</span> by <span>Kamy the Designer</span> · Mmesoma Onyeka · 2026 🌸
+    </footer>
+
+    <script>
+        // Intersection Observer for fade-ins
+        const fades = document.querySelectorAll('.fade');
+        const io = new IntersectionObserver(entries => {
+            entries.forEach(e => {
+                if (e.isIntersecting) { e.target.classList.add('visible'); }
+            });
+        }, { threshold: 0.15 });
+        fades.forEach(el => io.observe(el));
+
+        // Skill bar animation
+        const skillBars = document.querySelectorAll('.skill-bar');
+        const barObs = new IntersectionObserver(entries => {
+            entries.forEach(e => {
+                if (e.isIntersecting) {
+                    const pct = e.target.dataset.pct;
+                    e.target.style.width = pct + '%';
+                    barObs.unobserve(e.target);
+                }
+            });
+        }, { threshold: 0.5 });
+        skillBars.forEach(b => barObs.observe(b));
+
+        // Active nav link on scroll
+        const sections = document.querySelectorAll('section[id]');
+        const links = document.querySelectorAll('.nav-links a');
+        window.addEventListener('scroll', () => {
+            let cur = '';
+            sections.forEach(s => {
+                if (window.scrollY >= s.offsetTop - 120) cur = s.id;
+            });
+            links.forEach(l => {
+                l.classList.toggle('active', l.getAttribute('href') === '#' + cur);
+            });
+        });
+    </script>
+
+</body>
+
+</html>
