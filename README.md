@@ -1,6 +1,6 @@
 <div align="center">
 
-<!-- ANIMATED BANNER using capsule-render -->
+<!-- ANIMATED BANNER -->
 ![header](https://capsule-render.vercel.app/api?type=waving&color=ff4d9e,c77dff,ff85c2&height=200&section=header&text=Hi%20I'm%20Kamy%20%F0%9F%8C%B8&fontSize=50&fontColor=ffffff&fontAlignY=38&desc=@Kamythedesigner%20%E2%80%A2%20Designer%20%E2%80%A2%20Animator%20%E2%80%A2%20Web%20Dev&descAlignY=58&descSize=16&animation=fadeIn)
 
 <!-- TYPING ANIMATION -->
@@ -31,7 +31,7 @@
 ✦ Status :  Open for creative collabs ✨
 ```
 
-Hey! I'm **Kamy** — a passionate designer, animator, and web developer who loves turning ideas into beautiful digital experiences.  
+Hey! I'm **Kamy** — a passionate designer, animator, and web developer who loves turning ideas into beautiful digital experiences.
 Whether it's a fairy-tale animation, a pixel-perfect UI, or a story that moves people — I pour my whole heart into everything I create. 💕
 
 <br/>
@@ -81,13 +81,18 @@ Whether it's a fairy-tale animation, a pixel-perfect UI, or a story that moves p
 
 ---
 
-## 📊 GitHub Stats
+## 📊 My Skills at a Glance
 
 <div align="center">
 
-![Kamy's GitHub Stats](https://github-readme-stats.vercel.app/api?username=mmesomaonyeka301-code&show_icons=true&theme=radical&title_color=ff4d9e&icon_color=c77dff&text_color=ffffff&bg_color=1a0a12&border_color=ff4d9e&hide_border=false)
-
-![Top Languages](https://github-readme-stats.vercel.app/api/top-langs/?username=mmesomaonyeka301-code&layout=compact&theme=radical&title_color=ff4d9e&text_color=ffffff&bg_color=1a0a12&border_color=ff4d9e)
+| Skill | Level |
+|-------|-------|
+| 🎨 UI/UX Design | `████████████████████` 88% |
+| ✨ Animation | `████████████████░░░░` 82% |
+| 🖌️ Graphic Design | `█████████████████░░░` 85% |
+| 💻 Web Development | `███████████████░░░░░` 75% |
+| 📱 Responsive Design | `████████████████░░░░` 80% |
+| 📖 Storytelling | `██████████████████░░` 92% |
 
 </div>
 
@@ -123,7 +128,6 @@ Whether it's a fairy-tale animation, a pixel-perfect UI, or a story that moves p
 
 ---
 
-<!-- FOOTER WAVE -->
 ![footer](https://capsule-render.vercel.app/api?type=waving&color=ff4d9e,c77dff,ff85c2&height=120&section=footer&animation=fadeIn)
 
 <div align="center">
